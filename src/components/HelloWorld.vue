@@ -27,7 +27,7 @@ const init = () => {
 
   {
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(40, 40),
+      new THREE.PlaneGeometry(400, 40),
       new THREE.MeshStandardMaterial({ color: new THREE.Color(1, 0, 0) })
     )
     mesh.position.x = 20
@@ -53,10 +53,16 @@ const init = () => {
   renderer.domElement.onmousemove = ev => {
     const {movementX, movementY} = ev
     if (isMouseDown) {
-      camera.position.x += movementX
-       camera.position.y += movementY
+      camera.position.x -= movementX / camera.zoom
+       camera.position.y += movementY / camera.zoom
     }
+  }
 
+  renderer.domElement.onwheel = (ev: WheelEvent) => {
+    camera.zoom += ev.deltaY *0.001
+    if (camera.zoom < 0.1) {
+      camera.zoom = 0.2
+    }
   }
 
   renderer.setSize(width, height)
