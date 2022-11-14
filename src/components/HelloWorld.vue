@@ -10,10 +10,10 @@ const CANV = ref<HTMLDivElement | undefined>()
 const vec = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z)
 
 const init = () => {
-  const [width, height] = [600, 400]
+  const [width, height] = [900, 600]
 
   //const camera = new THREE.PerspectiveCamera(70, width / height, 1, 5000 )
-  const camera = new THREE.OrthographicCamera(-width, width, -height, height)
+  const camera = new THREE.OrthographicCamera(-width, width, height, -height)
   //camera.position.set(0, 10, 0)
 
   const scene = new THREE.Scene()
